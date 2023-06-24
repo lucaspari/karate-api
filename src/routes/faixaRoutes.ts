@@ -7,7 +7,6 @@ const faixaRouter = express.Router();
 faixaRouter.get('/', async (req: Request, res: Response) => {
     try {
       const faixas = await Faixa.find()
-      console.log("🚀 ~ file: faixaRoutes.ts:10 ~ faixaRouter.get ~ faixas:", faixas)
       res.json(faixas);
     } catch (error) {
       console.error('Error fetching faixas:', error);
