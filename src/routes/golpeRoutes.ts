@@ -24,5 +24,15 @@ golpeRouter.get('/:findByGolpeUrlPath', async (req: Request, res: Response) => {
     res.status(500).json({ error: 'Internal Server Error' });
   }
 });
-
+golpeRouter.get('/findGolpesByFaixa/:faixa', async (req: Request, res: Response) => {
+  try {
+    const golpes = await Golpe.find({
+      faixa: req.params.faixa,
+    });
+    res.json(golpes);
+  } catch (error) {
+    console.error('Error fetching golpes:', error);
+    res.status(500).json({ error: 'Internal Server Error' });
+  }
+});
 export default golpeRouter;
