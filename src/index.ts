@@ -5,9 +5,9 @@ import kataRouter from './routes/kataRoutes.js';
 
 const app = express()
 const port = process.env.PORT || 3000
-connectDatabase();
 app.use('/faixas',faixaRouter)
 app.use('/katas',kataRouter)
 app.listen(port,() =>{
     console.log("Server is running ✅")
+    connectDatabase();
 })
