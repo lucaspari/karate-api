@@ -12,5 +12,14 @@ faixaRouter.get('/', async (req: Request, res: Response) => {
     res.status(500).json({ error: 'Internal Server Error' });
   }
 });
+faixaRouter.get('/findByFaixa/:nome', async (req: Request, res: Response) => {
+  try {
+    const faixas = await Faixa.findOne({urlPath:req.params.nome});
+    res.json(faixas);
+  } catch (error) {
+    console.error('Error fetching faixas:', error);
+    res.status(500).json({ error: 'Internal Server Error' });
+  }
+});
 
 export default faixaRouter;
