@@ -3,8 +3,10 @@ import connectDatabase from './config/database.js';
 import faixaRouter from './routes/faixaRoutes.js';
 import kataRouter from './routes/kataRoutes.js';
 import golpeRouter from './routes/golpeRoutes.js';
+import cors from 'cors';
 const app = express();
 const port = process.env.PORT || 3000;
+app.use(cors())
 app.use('/faixas', faixaRouter);
 app.use('/katas', kataRouter);
 app.use('/golpes', golpeRouter);
