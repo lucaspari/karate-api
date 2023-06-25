@@ -1,11 +1,12 @@
 import express from 'express';
 import connectDatabase from './config/database.js';
+import faixaRouter from './routes/faixaRoutes.js';
+import kataRouter from './routes/kataRoutes.js';
 const app = express();
 const port = process.env.PORT || 3000;
-connectDatabase();
-app.get('/', (req, res) => {
-  res.json('Hello World');
-});
+app.use('/faixas', faixaRouter);
+app.use('/katas', kataRouter);
 app.listen(port, () => {
-  console.log('Server is running on port 3000');
+  console.log('Server is running ✅');
+  connectDatabase();
 });

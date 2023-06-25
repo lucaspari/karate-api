@@ -31,18 +31,29 @@ var __awaiter =
       step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
   };
-import mongoose from 'mongoose';
-import dotenv from 'dotenv';
-dotenv.config();
-const connectDatabase = () =>
+import express from 'express';
+import { Kata } from '../models/katas.js';
+const kataRouter = express.Router();
+kataRouter.get('/', (req, res) =>
   __awaiter(void 0, void 0, void 0, function* () {
-    mongoose
-      .connect(process.env.MONGO_URI)
-      .then(() => {
-        console.log('Connected to the database ✅');
-      })
-      .catch((err) => {
-        console.log('Error ❌: ', err);
-      });
-  });
-export default connectDatabase;
+    try {
+      const katas = yield Kata.find();
+      res.json(katas);
+    } catch (error) {
+      console.error('Error fetching faixas:', error);
+      res.status(500).json({ error: 'Internal Server Error' });
+    }
+  }),
+);
+kataRouter.get('/:faixaId', (req, res) =>
+  __awaiter(void 0, void 0, void 0, function* () {
+    try {
+      const katas = yield Kata.findOne({ faixa: req.params.faixaId });
+      res.json(katas);
+    } catch (error) {
+      console.error('Error fetching faixas:', error);
+      res.status(500).json({ error: 'Internal Server Error' });
+    }
+  }),
+);
+export default kataRouter;
