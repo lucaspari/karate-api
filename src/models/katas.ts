@@ -5,6 +5,7 @@ export interface IKata extends Document {
   nome: string;
   faixa: string;
   url: string;
+  descricao : string
 }
 
 const KataSchema: Schema = new Schema(
@@ -13,6 +14,7 @@ const KataSchema: Schema = new Schema(
     nome: { type: String, required: true },
     faixa: { type: String, required: true },
     url: { type: String, required: true },
+    descricao: { type: String, required: true },
   },
   { collection: 'katas' },
 );
