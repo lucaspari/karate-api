@@ -5,7 +5,7 @@ export interface IKata extends Document {
   nome: string;
   faixa: string;
   url: string;
-  descricao : string
+  descricao: string;
 }
 
 const KataSchema: Schema = new Schema(

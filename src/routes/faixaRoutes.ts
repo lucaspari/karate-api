@@ -14,7 +14,7 @@ faixaRouter.get('/', async (req: Request, res: Response) => {
 });
 faixaRouter.get('/findByFaixa/:nome', async (req: Request, res: Response) => {
   try {
-    const faixas = await Faixa.findOne({urlPath:req.params.nome});
+    const faixas = await Faixa.findOne({ urlPath: req.params.nome });
     res.json(faixas);
   } catch (error) {
     console.error('Error fetching faixas:', error);

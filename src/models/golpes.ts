@@ -9,6 +9,10 @@ export interface IGolpe extends Document {
   url: string;
   detalhes: string;
   faixa: string;
+  vejaMais: {
+    nome: string;
+    urlPath: string;
+  }[];
 }
 
 const GolpeSchema: Schema = new Schema(
@@ -21,6 +25,12 @@ const GolpeSchema: Schema = new Schema(
     url: { type: String, required: true },
     detalhes: { type: String, required: true },
     faixa: { type: String, required: true },
+    vejaMais: [
+      {
+        nome: { type: String, required: true },
+        urlPath: { type: String, required: true },
+      },
+    ],
   },
   { collection: 'golpes' },
 );
